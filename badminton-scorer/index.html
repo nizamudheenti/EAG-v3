@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmashScore | Badminton Tournament</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">🏸</span>
+                <h1>SmashScore</h1>
+            </div>
+            <nav id="main-nav">
+                <button class="nav-btn active" data-target="players-view">Players & Data</button>
+                <button class="nav-btn" data-target="matches-view">Matches & Quick Play</button>
+                <button class="nav-btn" data-target="rankings-view">Rankings</button>
+                <button class="nav-btn" data-target="scoreboard-view" id="nav-scoreboard" style="display:none;">Scoreboard</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Players Management View -->
+            <section id="players-view" class="view active">
+                <div class="card glass-panel">
+                    <h2>Tournament Players</h2>
+                    <p class="subtitle">Add players to generate a Round Robin tournament matches.</p>
+                    
+                    <form id="add-player-form" class="input-group">
+                        <input type="text" id="player-name-input" placeholder="Enter player or team name" autocomplete="off" required>
+                        <button type="submit" class="btn btn-primary">Add Player</button>
+                    </form>
+
+                    <div class="players-list-container">
+                        <ul id="players-list">
+                            <!-- Players dynamically inserted here -->
+                        </ul>
+                    </div>
+
+                    <div class="actions-footer">
+                        <button id="generate-matches-btn" class="btn btn-success" disabled>Generate Matches</button>
+                        <button id="clear-data-btn" class="btn btn-danger">Reset Tournament</button>
+                    </div>
+
+                    <hr class="separator">
+
+                    <h2>Data Management</h2>
+                    <p class="subtitle">Save your progress offline or load an existing tournament JSON file.</p>
+                    <div class="data-management">
+                        <button id="export-json-btn" class="btn btn-secondary">Download Data (JSON)</button>
+                        <label for="import-json-input" class="btn btn-secondary">Upload Data (JSON)</label>
+                        <input type="file" id="import-json-input" accept=".json" style="display:none">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Matches View -->
+            <section id="matches-view" class="view">
+                
+                <div class="card glass-panel" style="margin-bottom: 2rem;">
+                    <h2>Quick Match</h2>
+                    <p class="subtitle">Start a custom match on the fly without affecting the round-robin schedule structure.</p>
+                    <form id="quick-match-form" class="input-group" style="flex-wrap: wrap; align-items: center;">
+                        <input type="text" id="qm-p1" placeholder="Player/Team 1" required style="min-width: 150px;">
+                        <span style="font-weight: bold; color: var(--text-muted);">VS</span>
+                        <input type="text" id="qm-p2" placeholder="Player/Team 2" required style="min-width: 150px;">
+                        <select id="qm-category" class="glass-select" style="flex:1; min-width: 180px;">
+                            <optgroup label="Singles">
+                                <option value="Men's Singles">Men's Singles</option>
+                                <option value="Women's Singles">Women's Singles</option>
+                            </optgroup>
+                            <optgroup label="Doubles">
+                                <option value="Men's Doubles">Men's Doubles</option>
+                                <option value="Women's Doubles">Women's Doubles</option>
+                                <option value="Mixed Doubles">Mixed Doubles</option>
+                            </optgroup>
+                            <option value="Open/Exhibition">Open / Exhibition</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">Start Quick Match</button>
+                    </form>
+                </div>
+
+                <div class="card glass-panel">
+                    <h2>Matches Schedule & History</h2>
+                    <p class="subtitle">Tournament schedule overview and completed Quick Matches.</p>
+                    
+                    <div class="matches-grid" id="matches-container">
+                        <!-- Matches generated here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rankings View -->
+            <section id="rankings-view" class="view">
+                <div class="card glass-panel">
+                    <h2>Leaderboard / Rankings</h2>
+                    <p class="subtitle">Standings are based on matches between registered tournament players.</p>
+                    
+                    <div class="table-container">
+                        <table class="rankings-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Player</th>
+                                    <th class="text-center">Matches</th>
+                                    <th class="text-center">Win - Loss</th>
+                                    <th class="text-center">Sets (W/L)</th>
+                                    <th class="text-center">Pts Diff</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rankings-body">
+                                <!-- Rankings inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scoreboard View -->
+            <section id="scoreboard-view" class="view">
+                <div class="scoreboard-container glass-panel">
+                    <div class="match-info">
+                        <span class="badge" id="sb-match-category" style="margin-bottom: 0.5rem; display: inline-block;">Category</span>
+                        <h2 id="sb-match-title" style="margin-bottom: 0.5rem;">Loading...</h2>
+                        <span class="badge active" id="sb-match-status">Set 1</span>
+                    </div>
+
+                    <div class="score-display">
+                        <!-- Player 1 -->
+                        <div class="player-score-card">
+                            <h3 id="sb-p1-name">-</h3>
+                            <div class="sets-won" id="sb-p1-sets">Sets: 0</div>
+                            <div class="score-box" id="sb-p1-score">0</div>
+                            <div class="score-controls">
+                                <button class="btn btn-score btn-minus" data-player="1" title="Minus One">-</button>
+                                <button class="btn btn-score btn-plus" data-player="1" title="Add Point">+</button>
+                            </div>
+                        </div>
+
+                        <div class="vs-divider">
+                            <span class="set-indicator" id="sb-current-set">Set 1</span>
+                            <div class="divider-line"></div>
+                        </div>
+
+                        <!-- Player 2 -->
+                        <div class="player-score-card">
+                            <h3 id="sb-p2-name">-</h3>
+                            <div class="sets-won" id="sb-p2-sets">Sets: 0</div>
+                            <div class="score-box" id="sb-p2-score">0</div>
+                            <div class="score-controls">
+                                <button class="btn btn-score btn-minus" data-player="2" title="Minus One">-</button>
+                                <button class="btn btn-score btn-plus" data-player="2" title="Add Point">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="match-controls">
+                        <button id="end-match-btn" class="btn btn-danger">End Match</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="winner-modal">
+        <div class="modal-content glass-panel">
+            <h2>Match Completed!</h2>
+            <div class="winner-announcement">
+                <span id="winner-name">Winner</span> wins!
+            </div>
+            <p id="winner-score-summary">21-19</p>
+            <button id="close-modal-btn" class="btn btn-primary">Back to Matches</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
