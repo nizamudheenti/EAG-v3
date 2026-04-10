@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "LLM Data Collector",
+  "version": "1.0",
+  "description": "Extracts article text from the current page into a JSONL file for LLM training.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Extract to JSONL"
+  }
+}

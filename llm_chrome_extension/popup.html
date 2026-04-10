@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body { 
+        width: 250px; 
+        padding: 15px; 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        background-color: #f9fafb;
+      }
+      h3 {
+        margin-top: 0;
+        font-size: 16px;
+        color: #111827;
+        text-align: center;
+      }
+      button { 
+        width: 100%; 
+        padding: 10px; 
+        background-color: #2563eb; 
+        color: white; 
+        border: none; 
+        border-radius: 6px; 
+        cursor: pointer; 
+        font-weight: bold;
+        transition: background-color 0.2s;
+      }
+      button:hover { 
+        background-color: #1d4ed8; 
+      }
+      #status { 
+        margin-top: 12px; 
+        font-size: 13px; 
+        color: #4b5563; 
+        text-align: center; 
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>LLM Data Collector</h3>
+    <button id="extractBtn">Download Page as JSONL</button>
+    <div id="status"></div>
+    <script src="popup.js"></script>
+  </body>
+</html>
