@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python create_icons.py)",
+      "Bash(python -c \"import json; d=json.load\\(open\\('c:/Users/NIZAM/OneDrive/Documents/GitHub/EAG-v3/gemini_chrome_extension/manifest.json'\\)\\); print\\('Valid JSON:', d['name'], 'v'+d['version']\\)\")"
+    ]
+  }
+}
