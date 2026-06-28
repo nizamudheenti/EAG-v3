@@ -1,0 +1,24 @@
+{
+  "holdings": [
+    {
+      "ticker": "AAPL",
+      "shares": 25.0,
+      "avg_price": 180.5
+    },
+    {
+      "ticker": "TCS.NS",
+      "shares": 10.0,
+      "avg_price": 3900.0
+    },
+    {
+      "ticker": "MSFT",
+      "shares": 10.0,
+      "avg_price": 420.0
+    },
+    {
+      "ticker": "GOOGL",
+      "shares": 15.0,
+      "avg_price": 175.0
+    }
+  ]
+}

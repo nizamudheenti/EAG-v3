@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE files
+.vscode/
+.idea/
+
+# Environment configuration (Contains sensitive API keys)
+.env
+
+# Local Database Research Cache (Excludes cached research results but keeps structure)
+company_data/research_*.json
